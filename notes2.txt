@@ -1,0 +1,295 @@
+C:\Users\Kat\AppData\Roaming\StardewValley\ErrorLogs\MODDED_ProgramLog.Log_LATES
+T.txt
+Created log instance
+[03:52:33.276 AM] Initializing SDV Assembly...
+[03:52:33.276 AM] Starting SDV...
+[03:52:33.276 AM] Injecting New SDV Version...
+[03:52:33.276 AM] SDV Version: 1.07
+[03:52:33.278 AM] Validating api paths...
+[03:52:33.277 AM] SMAPI Version: 0.40.0 Alpha
+[03:52:33.461 AM] Patching SDV Graphics Profile...
+[03:52:33.463 AM] LOADING MODS
+[03:52:33.463 AM] Found Manifest: C:\Games\steamapps\common\Stardew Valley\Mods\
+SDVGiftTracker\manifest.json
+[03:52:33.786 AM] Created psconfigs directory @C:\Games\steamapps\common\Stardew
+ Valley\Mods\SDVGiftTracker\psconfigs
+[03:52:33.789 AM] Loading Mod DLL...
+[03:52:33.789 AM] LOADED MOD: SDV Gift Tracker by katms - Version StardewModding
+API.Version | Description: Remembers the likes/dislikes you've learned for each
+NPC (@ C:\Games\steamapps\common\Stardew Valley\Mods\SDVGiftTracker\SDVGiftTrack
+er.dll)
+[03:52:33.790 AM] [OUT] Gift Tracker entry
+[03:52:33.790 AM] Found Manifest: C:\Games\steamapps\common\Stardew Valley\Mods\
+SDVGlobalInventoryCount\manifest.json
+[03:52:33.807 AM] Created psconfigs directory @C:\Games\steamapps\common\Stardew
+ Valley\Mods\SDVGlobalInventoryCount\psconfigs
+[03:52:33.808 AM] Loading Mod DLL...
+[03:52:33.808 AM] LOADED MOD: Global Inventory Count by katms - Version StardewM
+oddingAPI.Version | Description: When hovering over an item in inventory (and co
+llections?), lists the number of that item already stored in chests somewhere (@
+ C:\Games\steamapps\common\Stardew Valley\Mods\SDVGlobalInventoryCount\SDVGlobal
+InventoryCount.dll)
+[03:52:33.808 AM] [OUT] Inventory counter initialized
+[03:52:33.810 AM] Found Manifest: C:\Games\steamapps\common\Stardew Valley\Mods\
+TrainerMod\manifest.json
+[03:52:33.809 AM] Registered command: countitem
+[03:52:33.823 AM] Created psconfigs directory @C:\Games\steamapps\common\Stardew
+ Valley\Mods\TrainerMod\psconfigs
+[03:52:33.824 AM] Loading Mod DLL...
+[03:52:33.824 AM] LOADED MOD: Trainer Mod by Zoryn - Version StardewModdingAPI.V
+ersion | Description: Registers several commands to use. Most commands are train
+er-like in that they offer forms of cheating. (@ C:\Games\steamapps\common\Stard
+ew Valley\Mods\TrainerMod\TrainerMod.dll)
+[03:52:33.826 AM] Registered command: show
+[03:52:33.826 AM] Registered command: types
+[03:52:33.828 AM] Registered command: player_setmoney
+[03:52:33.829 AM] Registered command: player_setstamina
+[03:52:33.830 AM] Registered command: player_sethealth
+[03:52:33.831 AM] Registered command: player_setmaxhealth
+[03:52:33.831 AM] Registered command: player_setimmunity
+[03:52:33.828 AM] Registered command: player_setname
+[03:52:33.828 AM] Registered command: stop
+[03:52:33.826 AM] Registered command: load
+[03:52:33.834 AM] Registered command: player_changestyle
+[03:52:33.833 AM] Registered command: player_changecolour
+[03:52:33.835 AM] Registered command: player_addmelee
+[03:52:33.835 AM] Registered command: player_addring
+[03:52:33.836 AM] Registered command: out_items
+[03:52:33.836 AM] Registered command: out_melee
+[03:52:33.837 AM] Registered command: out_rings
+[03:52:33.838 AM] Registered command: newitem
+[03:52:33.838 AM] Registered command: world_settime
+[03:52:33.832 AM] Registered command: exit
+[03:52:33.840 AM] Registered command: world_setday
+[03:52:33.841 AM] Registered command: world_setseason
+[03:52:33.841 AM] Registered command: world_downminelevel
+[03:52:33.842 AM] Registered command: world_setminelevel
+[03:52:33.834 AM] Registered command: player_additem
+[03:52:33.843 AM] SDV Loaded Into Memory
+[03:52:33.843 AM] Initializing Console Input Thread...
+[03:52:33.833 AM] Registered command: player_setspeed
+[03:52:33.844 AM] Applying Final SDV Tweaks...
+[03:52:33.839 AM] Registered command: world_freezetime
+[03:52:33.844 AM] Registered command: help
+[03:52:33.826 AM] Registered command: hide
+[03:52:33.830 AM] Registered command: player_setmaxstamina
+[03:52:33.826 AM] Registered command: save
+[03:52:33.843 AM] LOADED 3 MODS
+[03:52:33.832 AM] Registered command: player_setlevel
+[03:52:33.983 AM] XNA Initialize
+[03:52:33.985 AM] XNA LoadContent
+[03:52:34.207 AM] Initializing Debug Assets...
+Setting breakpad minidump AppID = 413150
+Steam_SetMinidumpSteamID:  Caching Steam ID:  76561198076587043 [API loaded no]
+[03:52:35.132 AM] [OUT] Universal_Love
+[03:52:35.134 AM] [OUT] -4 -8 -12 -15 -16 -19 -22 -24 -25 -28 -74 78 169 246 247
+ 305 309 310 311 403 419 423 535 536 537 725 726 749
+[03:52:35.134 AM] [OUT] 0 -20 -21 92 110 111 112 142 152 153 157 178 105 168 170
+ 171 172 374 376 378 380 397 420 684 721 766 767 772 203
+[03:52:35.135 AM] [OUT] Robin
+[03:52:35.132 AM] [OUT] Universal_Neutral
+[03:52:35.137 AM] [OUT]  You're giving this to me? This is amazing!/207 232 233
+400/Thank you! This is a very interesting specimen./-5 -79 422/...What is this?/
+80 330/This is disgusting./2/That was very thoughtful of you./-4/
+[03:52:35.138 AM] [OUT] Maru
+[03:52:35.139 AM] [OUT]  Is that...? Oh wow, @! This is spectacular!/72 197 190
+215 222 243 336 337 400 787/This is a super gift! Thank you!/-260 62 64 66 68 70
+ 334 335 725 726/Oh... That's for me? I'll just put it over here.../-4 330 414 4
+10 404 724/Yuck! You thought I would like this?/340 342 2 430 416/Thanks.//
+[03:52:35.140 AM] [OUT] Sebastian
+[03:52:35.140 AM] [OUT]  I really love this. How did you know?/84 227 236 575 30
+5/Thanks, I like this./267 276/...?/-81 30 -80/...I hate this./-5 2 195 201 240
+330 -26/...thanks./-4/
+[03:52:35.142 AM] [OUT] Linus
+[03:52:35.134 AM] [OUT] Universal_Like
+[03:52:35.144 AM] [OUT] Pierre
+[03:52:35.144 AM] [OUT]  This is my all-time favorite! Thank you!/202/That's ver
+y kind of you. I like this./-5 -6 -7 18 22 402 418 259/This isn't exactly my fav
+orite.../-2 -81 330/Please, never bring this to me again./167 -4 199 270 229 248
+/A present? Thanks!//
+[03:52:35.132 AM] [OUT] Universal_Dislike
+[03:52:35.132 AM] [OUT] 74 446
+[03:52:35.134 AM] [OUT] Universal_Hate
+[03:52:35.132 AM] [OUT] 194 216 262 304
+[03:52:35.135 AM] [OUT] Demetrius
+[03:52:35.142 AM] [OUT]  This is wonderful! You've really made my day special./8
+8 90 234 242 280/This is a great gift. Thank you!/-5 -6 -79 -81/Hmm... This does
+n't really do much for me./-2 330/Why would you give this to me? Do you think I
+like junk just because I live in a tent? That's terrible./2/A gift? How nice./-4
+/
+[03:52:35.132 AM] [OUT] -2 -7 -26 -75 -80 72 395 613 634 635 636 637 638 724
+[03:52:35.150 AM] [OUT]  You're giving this... to me? I'm speechless./213 593/Oh
+, goodness! Are you sure?/-7 18 402 418/No, no, no.../-81 330 300 306 307/This i
+s absolute junk. I'm offended./80 296/Oh, that's sweet. Thank you.//
+[03:52:35.150 AM] [OUT] Caroline
+[03:52:35.151 AM] [OUT] Abigail
+[03:52:35.157 AM] [OUT]  I seriously love this! You're the best, @!/66 128 220 2
+26 276 611/Hey, how'd you know I was hungry? This looks delicious!//What am I su
+pposed to do with this?/-5 -75 -79 16 245 246/What were you thinking? This is aw
+ful!/330/You brought me a present? Thanks.//
+[03:52:35.135 AM] [OUT]  This is for me? Wow, I absolutely love it!!/224 426 636
+/Thanks! This is really nice!/-6 -79 424 709/Um... why?/16 330/What the...? This
+ is terrible!/2/Thank you. This might come in handy.//
+[03:52:35.181 AM] [OUT]  *gasp*... This is absolutely marvelous!$u#$e#You've mad
+e an old lady very happy./72 220 239 284 591 595/Oh my, it looks wonderful! That
+'s very kind of you./-6 18 402 418/Um, Where will I put this?/16 80/...it smells
+ awful./225 226 227 228 219 396 397 393 372 248 296 -4 330/How nice. Thank you,
+dear.//
+[03:52:35.180 AM] [OUT]  This is my favorite thing! Thank you./20 205/Thanks./18
+ 195 199 200 214 219 223 231 233/That's a terrible gift./-80 16/This is probably
+ the worst gift I've ever seen. Thanks a lot./22 80 330/A gift? Hmm...#$e#Do you
+ want something in return?//
+[03:52:35.180 AM] [OUT] Evelyn
+[03:52:35.178 AM] [OUT] George
+[03:52:35.177 AM] [OUT]  Hey, awesome! I love this stuff!/201 212 662 664/This i
+s cool! Thanks./-5/Um... Okay. Thanks./16 330/Are you serious? This is garbage./
+80/Thanks!//
+[03:52:35.181 AM] [OUT] Lewis
+[03:52:35.177 AM] [OUT] Alex
+[03:52:35.181 AM] [OUT]  Wow, this is my favorite! Thank you!/200 208 235 260/Th
+anks, this is great!/-80 24 88 90 192 258 264 272 274 278/Well, I guess it's the
+ thought that counts.../-6 16 330/This makes me sick. What a horrendous gift./80
+/That's very nice of you. Thanks.//
+[03:52:35.198 AM] [OUT] Haley
+[03:52:35.198 AM] [OUT]  Oh my god, this is my favorite thing!!/221 421 610 88/*
+gasp*...for me? Thank you!/18 60 62 64 70 88 222 223 232 233 234 402 418/Ugh...t
+hat's such a stupid gift./-5 -6 -75 -79 -81 80 -27/Gross!/-4 2 16 330 74/Thank y
+ou. I love presents.//
+[03:52:35.199 AM] [OUT] Jas
+[03:52:35.199 AM] [OUT]  *gasp*...Wow!! Thank you!$h/221 595 604/I love presents
+! Thank you!/18 60 64 70 88 232 233 234 222 223 340 344 402 418/Is this a gift?
+Oh...$s/-5 -81 -75 -79 80/Ew. This is icky.$s/395 -26 2 16 330/Thank you!//
+[03:52:35.192 AM] [OUT] Clint
+[03:52:35.200 AM] [OUT]  Wow, thank you so much! This is terrific!/221 398 612/F
+or me? Wow, thanks!/18 60 64 70 88 232 233 234 222 223 340 344 402 418/This isn'
+t very fun...$s/-5 -75 -79 -81 80/Yuck, what is this?$s/395 -26 2 16 330/Thanks!
+//
+[03:52:35.200 AM] [OUT] Jodi
+[03:52:35.197 AM] [OUT]  Hey, hey! Now this is really something! Thanks a millio
+n, kid./24 90 199 208 303 346/You did good with this one, kid. Thanks!/-6 -75 -7
+9 18 227 228 231 232 233 234 235 236 238 402 418/This just ain't my thing./-5 16
+ 80 330/Now this is just absolutely despicable.$u#$e#(Is this some kind of mean
+joke?)/149 151/Thanks, kid./-4/
+[03:52:35.193 AM] [OUT]  Yes! This is exactly what I've been looking for!/60 62
+64 66 68 70 336 337 605 649 749/This is a fun gift. Thanks!/334 335/*Sigh*.../-8
+0 2 16 80 /This makes me depressed./4/Thanks./-15/
+[03:52:35.202 AM] [OUT]  Oh...! Mom used to give me this when I was a young boy.
+ It brings back wonderful memories. Thank you./607 649/Hey, now this is a really
+ great gift. Thanks./-5 -79 18 402 418/Ah... It's a... what is this, exactly? Hm
+m.../80 330 416/This... They gave this to me in Gotoro prison camp. I've been tr
+ying to forget about that. *shudder*/-6 2 227 229 456/That's kind of you. The fa
+mily will like this.//
+[03:52:35.194 AM] [OUT]  Thank you! I really love this!/60 376 651 72 164 218 23
+0 244 254/Thank you! This looks special./-6 20 22/Uh, it's for me? ...Thanks./-4
+ 80 330 456 457 444 440 422 420/Ugh...I'm sorry, but I absolutely hate this./446
+ 346 348 303 304 398/Thanks, this looks nice.//
+[03:52:35.204 AM] [OUT]  Aw, yea! This is my absolute favorite!/90 206 655 658 5
+62 731/Thanks! I really like this./167 210 213 220 223 224 228 232 233 239 -5/Hm
+m.. this is... interesting./-81 80 152 330 -75/You really don't get it, huh?/306
+ 307 342 -15 2/You got that for me? Thanks!//
+[03:52:35.202 AM] [OUT] Sam
+[03:52:35.197 AM] [OUT] Emily
+[03:52:35.207 AM] [OUT] Shane
+[03:52:35.208 AM] [OUT]  Oh wow, @! How'd you know this is my favorite?/206 215
+260 346/This is great! Thanks!/-5 -79 303/I don't really like this./-81 152 330/
+Why are you giving me your garbage?/80 342/Oh, you got me something? Thanks!//
+[03:52:35.208 AM] [OUT] Marnie
+[03:52:35.200 AM] [OUT] Vincent
+[03:52:35.209 AM] [OUT] Elliott
+[03:52:35.209 AM] [OUT]  @, this is a beautiful gift! Thank you!/715 732 218 444
+ 637/This is for me? Marvelous!/727 728 -79 60 80 82 84 149 151 346 348 728/Hmm.
+.. I'm not a huge fan of this./16 206 330 -79 -81 -6/This item gives me a terrib
+le feeling. I'll have to dispose of it./80 154 300 296/Oh, a present! Thank you!
+/-4/
+[03:52:35.210 AM] [OUT] Gus
+[03:52:35.201 AM] [OUT] Kent
+[03:52:35.194 AM] [OUT] Penny
+[03:52:35.211 AM] [OUT]  Hey, I really love this stuff. You can find great thing
+s in the mines./60 62 64 66 68 70 749/Ah, this reminds me of home./82 84 86 96 9
+7 98 99 121 122/Hmm... Is this what humans like?/-5 -6 16 -81 2 4 330/I don't ca
+re what species you are. This is worthless garbage.//An offering! Thank you./-28
+/
+[03:52:35.205 AM] [OUT] Leah
+[03:52:35.212 AM] [OUT]  Ahh, this is imbued with potent arcane energies. It's v
+ery useful for my studies. Thank you!/155 422 769 768/Many thanks. This item has
+ some very interesting properties./-12 72 82 84/This?... I suppose I'll cast it
+into the flames and see what happens./-5 -6 -81 2 16 330 766/Ughh... These are u
+tterly mundane. Please refrain from bothering me with this in the future.//Thank
+ you. This will prove useful, I think.//
+[03:52:35.213 AM] [OUT] Harvey
+[03:52:35.213 AM] [OUT]  It's for me? This is my favorite stuff! It's like you r
+ead my mind./348 237 432 395 342/That's such a nice gift. Thank you!/-81 -79 -7
+402 418 422 436 438 442 444 422/Hmm... Are you sure this is healthy?/-4 424 426
+2 330 233 232 238 234 223 222 221 220 216 211 210 208 206 205/...I think I'm all
+ergic to this./296 245 397 396 394 393 392/Thanks. That's very kind of you.//
+[03:52:35.214 AM] [OUT] Sandy
+[03:52:35.214 AM] [OUT]  Ooo! I absolutely love getting flowers from the valley.
+ I'm so happy!~/18 402 418/This looks wonderful. Thanks so much!/-75 -79 88 428
+436 438 440/Oh... Um. Thanks./-4 2 330/*sniff* ...what is it?//This is for me? T
+hank you!//
+[03:52:35.215 AM] [OUT] Willy
+[03:52:35.206 AM] [OUT]  Oh! This is exactly what I wanted! Thank you!/196 200 3
+48 606 651 650 426 430/This is a really nice gift! Thank you!/-5 -6 -79 -81 18 4
+02 169 406 408 418 86/Hmm... I guess everone has different tastes./-2 2 152 330
+221 223 229 232 233 241 209 194/This is a pretty terrible gift, isn't it?/305 21
+1 210 206 216/Thank you.//
+[03:52:35.211 AM] [OUT] Dwarf
+[03:52:35.216 AM] [OUT]  This is an amazing gift. For my people it is a great ho
+nor to receive something like this./72 16 276 337 305/Thank you very much./66 33
+6 340/Humans have... interesting tastes./-7 -81 2 330/Oh... Um. I guess I'll acc
+ept it.//Thank you.//
+[03:52:35.217 AM] [OUT] Player inventory changed
+[03:52:35.218 AM] Game Loaded
+[03:52:35.218 AM] Type 'help' for help, or 'help <cmd>' for a command's usage
+[03:52:35.208 AM] [OUT]  This is an incredible gift! Thanks!!/72 221 240 608/Tha
+nk you!/-5 -6 402 418/Oh. I guess I'll take it./16 152/This is worthless. I don'
+t understand you./330/Thank you! This looks nice.//
+[03:52:35.216 AM] [OUT] Krobus
+[03:52:35.210 AM] [OUT]  You're giving this... to me? I'm speechless./72 213 635
+ 729/Oh, goodness! Are you sure?/348 303 -7 18/No, no, no.../16 330/This is abso
+lute junk. I'm offended./80 167 648/Oh, that's sweet. Thank you.//
+[03:52:35.196 AM] [OUT] Pam
+[03:52:35.201 AM] [OUT]  Oh, you're such a sweetheart! I really love this!/72 20
+0 211 214 220 222 225 231/Thank you! This makes my day really special./-5 -6 -79
+ 18 402 418/Hmm, well I guess I could always put this in the compost.../-81 80 2
+48 330/*Blech*... I hate this.../18 22 396/That's so nice of you! Thanks.//
+[03:52:35.212 AM] [OUT] Wizard
+[03:52:35.215 AM] [OUT]  This is great! If only me ol' Pappy was around. He'd go
+ nuts for this./72 143 149 154 276 337 698/This looks great. Thank you!/66 336 3
+40 699 707 198 202 209 212 213 214 219 225 727 730 728 732/Hmmm... You like stuf
+f like this? Huh./-7 -81 2 4 330/... *sniff*... Well I guess I can toss it into
+the chum bucket.//A gift! Thanks./-4 227 228 242/
+[03:52:35.197 AM] [OUT]  This gift is fabulous! Thank you so much!/60 62 64 66 6
+8 70 241 428 440/Thank you! I'm feeling a positive energy from this gift./18 82
+84 86 196 200 207 230 235 402 418/Sorry, @. I don't like this./78 2 232 233 225
+226/This gift has a strong negative energy. I can't stand it./212 213 227 228/Th
+anks!//
+[03:53:01.082 AM] [OUT] Player inventory changed
+[03:53:01.083 AM] [OUT] Watering Can
+[03:53:01.083 AM] [OUT] Scythe
+[03:53:01.083 AM] [OUT] Hoe
+[03:53:01.083 AM] [OUT] Pickaxe
+[03:53:01.083 AM] [OUT] Axe
+[03:53:09.409 AM] [OUT] Player inventory changed
+[03:53:09.424 AM] [OUT] Scythe
+[03:53:09.425 AM] [OUT] Daffodil
+[03:53:09.426 AM] [OUT] Iridium Watering Can
+[03:53:09.409 AM] [OUT] Iridium Pickaxe
+[03:53:09.426 AM] [OUT] Baked Fish
+[03:53:09.426 AM] [OUT] Mayonnaise
+[03:53:09.427 AM] [OUT] Diamond
+[03:53:09.427 AM] [OUT] Crab Cakes
+[03:53:09.427 AM] [OUT] Beer
+[03:53:09.428 AM] [OUT] Fried Calamari
+[03:53:09.428 AM] [OUT] Spicy Eel
+[03:53:09.428 AM] [OUT] Crocus
+[03:53:09.428 AM] [OUT] Dandelion
+[03:53:09.429 AM] [OUT] Cheese
+[03:53:09.411 AM] [OUT] Gold Hoe
+[03:53:09.409 AM] [OUT] Galaxy Sword
+[03:53:09.410 AM] [OUT] Pale Ale
+[03:53:09.426 AM] [OUT] Coal
+[03:53:09.423 AM] [OUT] Iridium Rod
+[03:53:09.410 AM] [OUT] Gold Axe
+[03:53:19.069 AM] [OUT] Player inventory changed
+[03:53:19.069 AM] [OUT] Geode
