@@ -29,20 +29,34 @@ namespace SDVGiftTracker
         {
             Log.Out("Player inventory changed");
 
-            List<ItemStackChange> Removed = e.Removed;
+            Item gift;
+
+            // if an item was deducted (will be either removed or a negative quantity change)
+            // assume it's the first item in either list, gifts only get given one at a time
+            if(e.Removed.Count() > 0 ||
+                (e.QuantityChanged.Count() > 0 && e.QuantityChanged[0].StackChange < 0))
+            {
+                // get the first item
+                gift = (e.Removed.Count() > 0 ? e.Removed : e.QuantityChanged)[0].Item;
+            }
+
+            else
+            {
+                return;
+            }
 
             if (Game1.activeClickableMenu is DialogueBox)
             {
                 DialogueBox dbox = (DialogueBox)Game1.activeClickableMenu;
                 NPC recipient = Game1.currentSpeaker;
 
-                // check if at least one item was removed
-                // and if the dialogue box's current text is among the speaker's possible reactions to a gift
+                // check if the dialogue box's current text
+                // is among the speaker's possible reactions to a gift
                 // i.e. this isn't a delivery
-                if (dbox != null && recipient != null && Removed.Count() > 0 &&
+                if (dbox != null && recipient != null &&
                     Game1.NPCGiftTastes[recipient.name].Contains(dbox.getCurrentString()))
                 {
-                    GiftManager.Add(recipient.name, Removed[0].Item);
+                    GiftManager.Add(recipient.name, gift);
                 }
             }
         }
