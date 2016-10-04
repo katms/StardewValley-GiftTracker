@@ -48,6 +48,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Stardew Valley">
       <HintPath>..\..\..\..\..\..\..\..\Games\SteamApps\common\Stardew Valley\Stardew Valley.exe</HintPath>
       <Private>False</Private>
@@ -66,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GiftTasteManager.cs" />
     <Compile Include="SDVGiftTracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

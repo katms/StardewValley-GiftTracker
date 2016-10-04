@@ -10,55 +10,46 @@ using StardewModdingAPI.Inheritance;
 using StardewValley;
 using StardewValley.Menus;
 
+
 namespace SDVGiftTracker
 {
     public class SDVGiftTracker : Mod
     {
-        private static Dictionary<string, List<Item>> KnownTastes = new Dictionary<string, List<Item>>();
-        private static Dictionary<string, List<Item>> AllTastes = new Dictionary<string, List<Item>>();
-        private static bool log = true;
-
+        private static GiftTasteManager GiftManager;
 
         public override void Entry(params object[] objects)
         {
             PlayerEvents.InventoryChanged += OnInventoryChanged;
+            GameEvents.GameLoaded += OnGameLoaded;
 
             Log.Out("Gift Tracker entry");
         }
 
-        private static void OnInventoryChanged(object sender, EventArgs e)
+        private static void OnInventoryChanged(object sender, EventArgsInventoryChanged e)
         {
-            if (log)
+            Log.Out("Player inventory changed");
+
+            List<ItemStackChange> Removed = e.Removed;
+
+            if (Game1.activeClickableMenu is DialogueBox)
             {
-                LogTasteDict();
-                log = false;
-            }
-            if (e is EventArgsInventoryChanged)
-            {
-                Log.Out("Player inventory changed");
-                EventArgsInventoryChanged eIC = (EventArgsInventoryChanged)e;
-                List<ItemStackChange> Removed = eIC.Removed;
-                foreach(var isc in Removed)
+                DialogueBox dbox = (DialogueBox)Game1.activeClickableMenu;
+                NPC recipient = Game1.currentSpeaker;
+
+                // check if at least one item was removed
+                // and if the dialogue box's current text is among the speaker's possible reactions to a gift
+                // i.e. this isn't a delivery
+                if (dbox != null && recipient != null && Removed.Count() > 0 &&
+                    Game1.NPCGiftTastes[recipient.name].Contains(dbox.getCurrentString()))
                 {
-                    Log.Out(isc.Item.Name);
+                    GiftManager.Add(recipient.name, Removed[0].Item);
                 }
-                if(Game1.activeClickableMenu is DialogueBox)
-                {
-                    Log.Out("Dialogue box is open on inventory removed");
-                }
-            }
-            else
-            {
-                Log.Out("Player inventory changed, wrong e-type");
             }
         }
 
-        static private void LogTasteDict()
+        private void OnGameLoaded(object sender, EventArgs e)
         {
-            foreach (var pair in Game1.NPCGiftTastes)
-            {
-                Log.Out("Taste key: " + pair.Key + "\n" + "Taste value: " + pair.Value);
-            }
+            GiftManager = new GiftTasteManager();
         }
     }
 }
