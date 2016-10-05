@@ -51,6 +51,8 @@ namespace SDVGiftTracker
             // game must have loaded before this
             foreach (var c in Game1.NPCGiftTastes.Keys)
             {
+                // don't store data for universal loves, etc.
+                if (c.StartsWith("Universal_")) continue;
                 Data.Add(c, new Dictionary<GiftTaste, HashSet<string>>());
                 foreach (GiftTaste e in Enum.GetValues(typeof(GiftTaste)).Cast<GiftTaste>())
                 {
@@ -79,18 +81,30 @@ namespace SDVGiftTracker
             Log.Out(name + " " + GiftTasteHelper(gt) + " " + it.Name);
         }
 
+        public bool HasKnownGiftTastes(string name)
+        {
+            return Data.ContainsKey(name) && Data[name].Any(e => e.Value.Count() > 0);
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
             foreach(var name in Data.Keys)
             {
+                // don't list people with no data
+                if (!HasKnownGiftTastes(name)) continue;
+
                 sb.AppendLine(name+":");
                 foreach(GiftTaste gt in Data[name].Keys)
                 {
-                    sb.Append("\t" + GiftTasteHelper(gt) + " ");
-                    sb.Append(String.Join(", ", Data[name][gt].ToArray()));
-                    sb.AppendLine();
+                    // skip empty categories
+                    if (Data[name][gt].Count() > 0)
+                    {
+                        sb.Append("\t" + GiftTasteHelper(gt) + " ");
+                        sb.Append(String.Join(", ", Data[name][gt].ToArray()));
+                        sb.AppendLine();
+                    }
                 }
             }
             return sb.ToString();
