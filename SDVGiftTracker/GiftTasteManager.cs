@@ -43,7 +43,9 @@ namespace SDVGiftTracker
         // where the key is a taste and the value is a set of item names
         private Dictionary<string, Dictionary<GiftTaste, HashSet<string>>> Data;
 
-        public GiftTasteManager()
+        private GiftTrackerConfig ModConfig { get; set; }
+
+        public GiftTasteManager(GiftTrackerConfig ModConfig)
         {
             Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>(StringComparer.OrdinalIgnoreCase);
 
@@ -59,6 +61,8 @@ namespace SDVGiftTracker
                     Data[c].Add(e, new HashSet<string>());
                 }
             }
+
+            this.ModConfig = ModConfig;
         }
 
         public void Add(string name, Item it)
@@ -83,7 +87,28 @@ namespace SDVGiftTracker
 
         public bool HasKnownGiftTastes(string name)
         {
-            return Data.ContainsKey(name) && Data[name].Any(e => e.Value.Count() > 0);
+            return Data.ContainsKey(name) &&
+                // check if any non-empty categories would be displayed
+                Data[name].Where(c => DisplayCategory(c.Key)).Any(e => e.Value.Count() > 0);
+        }
+
+        bool DisplayCategory(GiftTaste category)
+        {
+            switch(category)
+            {
+                case GiftTaste.eGiftTaste_Love:
+                    return true;
+                case GiftTaste.eGiftTaste_Like:
+                    return ModConfig.ShowLikes;
+                case GiftTaste.eGiftTaste_Dislike:
+                    return ModConfig.ShowDislikes;
+                case GiftTaste.eGiftTaste_Hate:
+                    return ModConfig.ShowHates;
+                case GiftTaste.eGiftTaste_Neutral:
+                    return ModConfig.ShowNeutral;
+                default:
+                    return false;
+            }
         }
 
         public string GetGiftData(string[] args = null)
@@ -102,14 +127,15 @@ namespace SDVGiftTracker
                 foreach(GiftTaste gt in Data[name].Keys)
                 {
                     // skip empty categories
-                    if (Data[name][gt].Count() > 0)
+                    // skip disabled categories
+                    if (Data[name][gt].Count() > 0 && DisplayCategory(gt))
                     {
                         sb.Append("\t" + GiftTasteHelper(gt) + ": ");
                         sb.Append(String.Join(", ", Data[name][gt].ToArray()));
                         sb.AppendLine();
                     }
                 }
-                
+
             }
             return sb.ToString();
         }

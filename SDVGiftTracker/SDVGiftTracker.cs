@@ -17,10 +17,14 @@ namespace SDVGiftTracker
     {
         private static GiftTasteManager GiftManager;
 
+        private GiftTrackerConfig ModConfig { get; set; }
+
         public override void Entry(params object[] objects)
         {
             PlayerEvents.InventoryChanged += OnInventoryChanged;
             PlayerEvents.LoadedGame += OnGameLoaded;
+
+            ModConfig = new GiftTrackerConfig().InitializeConfig(BaseConfigPath);
 
             Command.RegisterCommand("list_gifttastes", "List all learned gift tastes").CommandFired += list_gifttastes;
 
@@ -65,7 +69,7 @@ namespace SDVGiftTracker
 
         private void OnGameLoaded(object sender, EventArgs e)
         {
-            GiftManager = new GiftTasteManager();
+            GiftManager = new GiftTasteManager(ModConfig);
         }
 
         // todo: can't build against XNA, so no location-based stuff but make this an in-game thing
