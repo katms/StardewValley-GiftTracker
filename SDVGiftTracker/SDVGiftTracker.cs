@@ -22,6 +22,8 @@ namespace SDVGiftTracker
             PlayerEvents.InventoryChanged += OnInventoryChanged;
             GameEvents.GameLoaded += OnGameLoaded;
 
+            Command.RegisterCommand("list_gifttastes", "List all learned gift tastes").CommandFired += list_gifttastes;
+
             Log.Out("Gift Tracker entry");
         }
 
@@ -64,6 +66,12 @@ namespace SDVGiftTracker
         private void OnGameLoaded(object sender, EventArgs e)
         {
             GiftManager = new GiftTasteManager();
+        }
+
+        // todo: can't build against XNA, so no location-based stuff but make this an in-game thing
+        private void list_gifttastes(object sender, EventArgsCommand e)
+        {
+            Log.Out(GiftManager);
         }
     }
 }

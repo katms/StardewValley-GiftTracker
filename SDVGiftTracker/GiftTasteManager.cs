@@ -78,5 +78,22 @@ namespace SDVGiftTracker
 
             Log.Out(name + " " + GiftTasteHelper(gt) + " " + it.Name);
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach(var name in Data.Keys)
+            {
+                sb.AppendLine(name+":");
+                foreach(GiftTaste gt in Data[name].Keys)
+                {
+                    sb.Append("\t" + GiftTasteHelper(gt) + " ");
+                    sb.Append(String.Join(", ", Data[name][gt].ToArray()));
+                    sb.AppendLine();
+                }
+            }
+            return sb.ToString();
+        }
     }
 }
