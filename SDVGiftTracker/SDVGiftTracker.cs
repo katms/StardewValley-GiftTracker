@@ -20,7 +20,7 @@ namespace SDVGiftTracker
         public override void Entry(params object[] objects)
         {
             PlayerEvents.InventoryChanged += OnInventoryChanged;
-            GameEvents.GameLoaded += OnGameLoaded;
+            PlayerEvents.LoadedGame += OnGameLoaded;
 
             Command.RegisterCommand("list_gifttastes", "List all learned gift tastes").CommandFired += list_gifttastes;
 
@@ -71,7 +71,7 @@ namespace SDVGiftTracker
         // todo: can't build against XNA, so no location-based stuff but make this an in-game thing
         private void list_gifttastes(object sender, EventArgsCommand e)
         {
-            Log.Out(GiftManager);
+            Log.Out(GiftManager.GetGiftData(e.Command.CalledArgs));
         }
     }
 }

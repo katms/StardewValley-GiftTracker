@@ -45,7 +45,7 @@ namespace SDVGiftTracker
 
         public GiftTasteManager()
         {
-            Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>();
+            Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>(StringComparer.OrdinalIgnoreCase);
 
             // add a map for all NPCs with gift tastes
             // game must have loaded before this
@@ -86,26 +86,30 @@ namespace SDVGiftTracker
             return Data.ContainsKey(name) && Data[name].Any(e => e.Value.Count() > 0);
         }
 
-        public override string ToString()
+        public string GetGiftData(string[] args = null)
         {
-            StringBuilder sb = new StringBuilder();
+            // if no names given, output everyone
+            HashSet<string> names = (args != null && args.Length > 0) ? 
+                                    new HashSet<string>(args) : new HashSet<string>(Data.Keys);
 
-            foreach(var name in Data.Keys)
+            StringBuilder sb = new StringBuilder("\n");
+            foreach (var name in Data.Keys)
             {
-                // don't list people with no data
-                if (!HasKnownGiftTastes(name)) continue;
+                // don't list people who weren't requested or with no data
+                if (!names.Contains(name) || !HasKnownGiftTastes(name)) continue;
 
-                sb.AppendLine(name+":");
+                sb.AppendLine(name);
                 foreach(GiftTaste gt in Data[name].Keys)
                 {
                     // skip empty categories
                     if (Data[name][gt].Count() > 0)
                     {
-                        sb.Append("\t" + GiftTasteHelper(gt) + " ");
+                        sb.Append("\t" + GiftTasteHelper(gt) + ": ");
                         sb.Append(String.Join(", ", Data[name][gt].ToArray()));
                         sb.AppendLine();
                     }
                 }
+                
             }
             return sb.ToString();
         }
