@@ -8,7 +8,7 @@
     "Build": ""
   },
   "Description": "Remembers the likes/dislikes you've learned for each NPC",
-  "UniqueID": "703803841",
+  "UniqueID": "GiftTracker",
   "PerSaveConfigs": false,
   "EntryDll": "SDVGiftTracker.dll"
 }
