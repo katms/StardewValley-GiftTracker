@@ -9,17 +9,17 @@ using StardewModdingAPI;
 
 namespace SDVGiftTracker
 {
+    public enum GiftTaste
+    {
+        eGiftTaste_Love = NPC.gift_taste_love,
+        eGiftTaste_Like = NPC.gift_taste_like,
+        eGiftTaste_Dislike = NPC.gift_taste_dislike,
+        eGiftTaste_Hate = NPC.gift_taste_hate,
+        eGiftTaste_Neutral = NPC.gift_taste_neutral
+    }
+
     class GiftTasteManager
     {
-        enum GiftTaste
-        {
-            eGiftTaste_Love = NPC.gift_taste_love,
-            eGiftTaste_Like = NPC.gift_taste_like,
-            eGiftTaste_Dislike = NPC.gift_taste_dislike,
-            eGiftTaste_Hate = NPC.gift_taste_hate,
-            eGiftTaste_Neutral = NPC.gift_taste_neutral
-        }
-
         static string GiftTasteHelper(GiftTaste gt)
         {
             switch (gt)
@@ -47,22 +47,33 @@ namespace SDVGiftTracker
 
         public GiftTasteManager(GiftTrackerConfig ModConfig)
         {
-            Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>(StringComparer.OrdinalIgnoreCase);
+            this.ModConfig = ModConfig;
 
+            Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>(ModConfig.GiftData, StringComparer.OrdinalIgnoreCase);
+
+            // fill in Data where missing
             // add a map for all NPCs with gift tastes
             // game must have loaded before this
             foreach (var c in Game1.NPCGiftTastes.Keys)
             {
                 // don't store data for universal loves, etc.
-                if (c.StartsWith("Universal_")) continue;
+                if (c.StartsWith("Universal_") || Data.ContainsKey(c)) continue;
                 Data.Add(c, new Dictionary<GiftTaste, HashSet<string>>());
                 foreach (GiftTaste e in Enum.GetValues(typeof(GiftTaste)).Cast<GiftTaste>())
                 {
-                    Data[c].Add(e, new HashSet<string>());
+                    if (!Data[c].ContainsKey(e))
+                    {
+                        Data[c].Add(e, new HashSet<string>());
+                    }
                 }
             }
 
-            this.ModConfig = ModConfig;
+        }
+
+        public void UpdateConfig()
+        {
+            ModConfig.GiftData = Data;
+            ModConfig.WriteConfig();
         }
 
         public void Add(string name, Item it)

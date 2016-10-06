@@ -24,6 +24,9 @@ namespace SDVGiftTracker
             PlayerEvents.InventoryChanged += OnInventoryChanged;
             PlayerEvents.LoadedGame += OnGameLoaded;
 
+            // save learned gift tastes at the end of the day, when the game saves
+            TimeEvents.OnNewDay += (object sender, EventArgsNewDay e) => GiftManager.UpdateConfig();
+
             ModConfig = new GiftTrackerConfig().InitializeConfig(BaseConfigPath);
 
             Command.RegisterCommand("list_gifttastes", "List all learned gift tastes").CommandFired += list_gifttastes;

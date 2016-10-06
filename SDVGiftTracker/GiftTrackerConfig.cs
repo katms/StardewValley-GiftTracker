@@ -17,12 +17,16 @@ namespace SDVGiftTracker
         public bool ShowDislikes { get; set; }
         public bool ShowHates { get; set; }
 
+        public Dictionary<string, Dictionary<GiftTaste, HashSet<string>>> GiftData { get; set; }
+
         public override T GenerateDefaultConfig<T>()
         {
             ShowNeutral = false;
             ShowLikes = true;
             ShowDislikes = true;
             ShowHates = true;
+
+            GiftData = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>();
 
             return this as T;
         }
