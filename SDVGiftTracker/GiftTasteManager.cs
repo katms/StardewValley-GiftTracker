@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using StardewValley;
 using StardewModdingAPI;
 
+using System.IO;
+using Newtonsoft.Json;
+
 namespace SDVGiftTracker
 {
     public enum GiftTaste
@@ -41,19 +44,62 @@ namespace SDVGiftTracker
 
         // maps NPCs by name to a dict of known gift tastes,
         // where the key is a taste and the value is a set of item names
-        private Dictionary<string, Dictionary<GiftTaste, HashSet<string>>> Data;
+        private Dictionary<string, Dictionary<GiftTaste, HashSet<string>>> Data { get; set; }
+        private string GiftDataFilepath { get; set; }
 
         private GiftTrackerConfig ModConfig { get; set; }
 
-        public GiftTasteManager(GiftTrackerConfig ModConfig)
+        public GiftTasteManager(GiftTrackerConfig ModConfig, string GiftDataPath)
         {
             this.ModConfig = ModConfig;
+            GiftDataFilepath = GiftDataPath;
 
-            Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>(ModConfig.GiftData, StringComparer.OrdinalIgnoreCase);
+            // fill Data
+            if (!File.Exists(GiftDataFilepath))
+            {
+                try
+                {
+                    File.Create(GiftDataFilepath);
+                }
+                catch(Exception ex)
+                {
+                    Log.Error("Gift tracker: could not create save file");
+                    Log.Error(ex.Message);
+                }
+                GenerateGiftTasteDictionary();
+            }
+            else
+            {
+                try
+                {
+                    Data = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>>(File.ReadAllText(GiftDataFilepath));
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Gift Tracker: Error loading gift data");
+                    Log.Error(ex.Message);
+                }
 
-            // fill in Data where missing
-            // add a map for all NPCs with gift tastes
-            // game must have loaded before this
+                // could happen if the file was created for a save
+                // but not written to at the end of the day
+                if (Data == null || Data.Count == 0)
+                {
+                    GenerateGiftTasteDictionary();
+                }
+            }
+        }
+
+        // creates a list of categories for every npc
+        private void GenerateGiftTasteDictionary()
+        {
+            Data = new Dictionary<string, Dictionary<GiftTaste, HashSet<string>>>();
+
+            if(null == Game1.NPCGiftTastes)
+            {
+                Log.Error("Gift Tracker: NPCGiftTastes not loaded");
+                return;
+            }
+
             foreach (var c in Game1.NPCGiftTastes.Keys)
             {
                 // don't store data for universal loves, etc.
@@ -67,13 +113,19 @@ namespace SDVGiftTracker
                     }
                 }
             }
-
         }
 
-        public void UpdateConfig()
+        public void UpdateGiftData()
         {
-            ModConfig.GiftData = Data;
-            ModConfig.WriteConfig();
+            try
+            {
+                File.WriteAllText(GiftDataFilepath, JsonConvert.SerializeObject(Data));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Gift Tracker: Error saving gift taste data");
+                Log.Error(ex.Message);
+            }
         }
 
         public void Add(string name, Item it)
@@ -132,8 +184,7 @@ namespace SDVGiftTracker
             foreach (var name in Data.Keys)
             {
                 // don't list people who weren't requested or with no data
-                if (!names.Contains(name) || !HasKnownGiftTastes(name)) continue;
-
+                if (!names.Contains(name, StringComparer.OrdinalIgnoreCase) || !HasKnownGiftTastes(name)) continue;
                 sb.AppendLine(name);
                 foreach(GiftTaste gt in Data[name].Keys)
                 {

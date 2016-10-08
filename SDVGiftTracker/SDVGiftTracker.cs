@@ -10,6 +10,8 @@ using StardewModdingAPI.Inheritance;
 using StardewValley;
 using StardewValley.Menus;
 
+using System.IO;
+
 
 namespace SDVGiftTracker
 {
@@ -19,17 +21,24 @@ namespace SDVGiftTracker
 
         private GiftTrackerConfig ModConfig { get; set; }
 
+        private string DirectoryName => Path.Combine(PathOnDisk, "giftdata");
+
         public override void Entry(params object[] objects)
         {
             PlayerEvents.InventoryChanged += OnInventoryChanged;
             PlayerEvents.LoadedGame += OnGameLoaded;
 
             // save learned gift tastes at the end of the day, when the game saves
-            TimeEvents.OnNewDay += (object sender, EventArgsNewDay e) => GiftManager.UpdateConfig();
+            TimeEvents.OnNewDay += (object sender, EventArgsNewDay e) => GiftManager.UpdateGiftData();
 
             ModConfig = new GiftTrackerConfig().InitializeConfig(BaseConfigPath);
 
             Command.RegisterCommand("list_gifttastes", "List all learned gift tastes").CommandFired += list_gifttastes;
+
+            if(!Directory.Exists(DirectoryName))
+            {
+                Directory.CreateDirectory(DirectoryName);
+            }
 
             Log.Out("Gift Tracker entry");
         }
@@ -53,7 +62,6 @@ namespace SDVGiftTracker
             {
                 return;
             }
-
             if (Game1.activeClickableMenu is DialogueBox)
             {
                 DialogueBox dbox = (DialogueBox)Game1.activeClickableMenu;
@@ -72,7 +80,9 @@ namespace SDVGiftTracker
 
         private void OnGameLoaded(object sender, EventArgs e)
         {
-            GiftManager = new GiftTasteManager(ModConfig);
+            // initialize manager
+            GiftManager = new GiftTasteManager(ModConfig, 
+                Path.Combine(DirectoryName, Constants.SaveFolderName + ".json"));
         }
 
         // todo: can't build against XNA, so no location-based stuff but make this an in-game thing
