@@ -29,7 +29,14 @@ namespace SDVGiftTracker
             PlayerEvents.LoadedGame += OnGameLoaded;
 
             // save learned gift tastes at the end of the day, when the game saves
-            TimeEvents.OnNewDay += (object sender, EventArgsNewDay e) => GiftManager.UpdateGiftData();
+            TimeEvents.OnNewDay += (object sender, EventArgsNewDay e) =>
+            {
+                // only save once per day (newDay will be true the second time, and on new games)
+                if (!Game1.newDay && null != GiftManager)
+                {
+                    GiftManager.UpdateGiftData();
+                }
+            };
 
             ModConfig = new GiftTrackerConfig().InitializeConfig(BaseConfigPath);
 
