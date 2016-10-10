@@ -1,0 +1,27 @@
+﻿/*
+  Defines the opening sentences for when NPCs tell you a loved or hated item for their relative
+  Don't change this unless you know what you're doing
+
+
+  For the last quote in hates, single quote is supposed to be missing.
+
+*/
+
+
+{
+  "eGiftTaste_Love": [
+    "Did you know that {0} loves '{1}'?",
+    "{0} loves '{1}'! (She|He) told me.",
+    "Here's a secret. {0} loves '{1}'.",
+    "If you want {0} to like you, give (her|him) '{1}'.",
+    "If you want to get on {0}'s good side, give (her|him) '{1}'.",
+    "If you want to make friends with {0}, you can't go wrong with '{1}'.",
+    "{0} loves '{1}'. She keeps a box of it under her bed. Weird, huh?"
+  ],
+  "eGiftTaste_Hate": [
+    "A word of warning. {0} really hates '{1}'",
+    "{0} really hates '{1}'.",
+    "If you want {0} to dislike you, give (her|him) '{1}'. (She|He) might not forgive you, though.",
+    "{0} really hates '{1}. You don't want to know the details. Trust me."
+  ]
+}

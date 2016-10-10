@@ -11,7 +11,8 @@ using StardewValley;
 using StardewValley.Menus;
 
 using System.IO;
-
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace SDVGiftTracker
 {
@@ -22,6 +23,14 @@ namespace SDVGiftTracker
         private GiftTrackerConfig ModConfig { get; set; }
 
         private string DirectoryName => Path.Combine(PathOnDisk, "giftdata");
+
+        // maps an NPC to a set of (name, relationship) pairs
+        private Dictionary<string, Dictionary<string, string>> Relationships { get; set; }
+
+        // dialogue regex for each npc's possible associates' loved and hated gifts
+        private Dictionary<string, List<Regex>> LoveDialogues { get; set; }
+        private Dictionary<string, List<Regex>> HateDialogues { get; set; }
+        private string ItemRegex => "(?<item>[a-zA-Z -]+)";
 
         public override void Entry(params object[] objects)
         {
@@ -37,6 +46,11 @@ namespace SDVGiftTracker
                     GiftManager.UpdateGiftData();
                 }
             };
+
+            // dialogue hook
+            MenuEvents.MenuChanged += OnDialogueBox;
+
+            GameEvents.LoadContent += OnLoadContent;
 
             ModConfig = new GiftTrackerConfig().InitializeConfig(BaseConfigPath);
 
@@ -85,6 +99,51 @@ namespace SDVGiftTracker
             }
         }
 
+        private void OnLoadContent(object sender, EventArgs e)
+        {
+            // reverse lookup of how npcs are related
+            // Pierre["my wife"] = Caroline
+            Relationships = new Dictionary<string, Dictionary<string, string>>();
+            var npcdata = Game1.content.Load<Dictionary<string, string>>("Data\\NPCDispositions");
+
+            foreach (var key in npcdata.Keys)
+            {
+                string[] relations = npcdata[key].Split('/')[9].Split(' ');
+
+                // happens with a couple npcs with no relationships
+                // e.g. Marlon doesn't have a birthday, so the 10th element is wrong
+                if (relations.Length <= 1 || relations.Length%2 != 0) continue;
+                Relationships.Add(key, new Dictionary<string, string>());
+
+                // relationships are written as a series of name-relationship pairs
+                // if the relationship is an empty string then the other NPC gets referred to by name
+                // otherwise it's "my [wife/sister/son/etc.]"
+                // the "my" will not be capitalized if at the beginning of a sentence
+                for(int i = 0, j = 1; j < relations.Length; i += 2, j = i+1)
+                {
+                    Relationships[key].Add(
+                        (relations[j] == "''") ? relations[i] : "my " + relations[j].Replace("_", " ").Trim('\''),
+                        relations[i]);
+                }
+
+                // dialogue templates
+                Dictionary<GiftTaste, List<string>> Dialogues =
+                    JsonConvert.DeserializeObject<Dictionary<GiftTaste, List<string>>>(File.ReadAllText(Path.Combine(PathOnDisk, "data.json")));
+
+                LoveDialogues = new Dictionary<string, List<Regex>>();
+                foreach (string npc in Relationships.Keys)
+                {
+                    LoveDialogues.Add(npc, new List<Regex>());
+                    string allrelationships = String.Format("(?<character>({0}))", String.Join("|", Relationships[npc].Keys));
+                    foreach (string quote in Dialogues[GiftTaste.eGiftTaste_Love])
+                    {
+                        LoveDialogues[npc].Add(new Regex(String.Format(quote, allrelationships, ItemRegex)));
+                    }
+                }
+            }
+        }
+
+        // called when a save is loaded
         private void OnGameLoaded(object sender, EventArgs e)
         {
             // initialize manager
@@ -92,7 +151,32 @@ namespace SDVGiftTracker
                 Path.Combine(DirectoryName, Constants.SaveFolderName + ".json"));
         }
 
-        // todo: can't build against XNA, so no location-based stuff but make this an in-game thing
+        private void OnDialogueBox(object sender, EventArgsClickableMenuChanged e)
+        {
+            if(e.NewMenu is DialogueBox && null != Game1.currentSpeaker 
+                && Relationships.ContainsKey(Game1.currentSpeaker.name))
+            {
+                DialogueBox dbox = (DialogueBox)e.NewMenu;
+                string character, item;
+
+                // if any match is found
+                var loveMatch = LoveDialogues[Game1.currentSpeaker.getName()].Select(r => r.Match(dbox.getCurrentString()))
+                    .FirstOrDefault(m => Match.Empty != m);
+                if (loveMatch != null)
+                {
+                    Log.Out(loveMatch.Groups["character"].Value + " " + loveMatch.Groups["item"].Value);
+                    character = Relationships[Game1.currentSpeaker.name][loveMatch.Groups["character"].Value];
+                    item = loveMatch.Groups["item"].Value;
+
+                    // trying to get the actual Item instance from the name
+                    // is probably more trouble than it's worth
+                    // considering they're already being stored as strings
+                    GiftManager.Add(character, item, GiftTaste.eGiftTaste_Love);
+                }
+            }
+        }
+
+        // todo: make this an in-game thing
         private void list_gifttastes(object sender, EventArgsCommand e)
         {
             Log.Out(GiftManager.GetGiftData(e.Command.CalledArgs));

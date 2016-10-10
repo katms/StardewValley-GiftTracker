@@ -148,6 +148,15 @@ namespace SDVGiftTracker
             Log.Out(name + " " + GiftTasteHelper(gt) + " " + it.Name);
         }
 
+        public void Add(string npc, string item, GiftTaste gt)
+        {
+            if(Data.ContainsKey(npc))
+            {
+                Data[npc][gt].Add(item);
+            }
+            Log.Out(npc + " " + GiftTasteHelper(gt) + " " + item);
+        }
+
         public bool HasKnownGiftTastes(string name)
         {
             return Data.ContainsKey(name) &&
