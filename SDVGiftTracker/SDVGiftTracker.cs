@@ -131,13 +131,20 @@ namespace SDVGiftTracker
                     JsonConvert.DeserializeObject<Dictionary<GiftTaste, List<string>>>(File.ReadAllText(Path.Combine(PathOnDisk, "data.json")));
 
                 LoveDialogues = new Dictionary<string, List<Regex>>();
+                HateDialogues = new Dictionary<string, List<Regex>>();
                 foreach (string npc in Relationships.Keys)
                 {
                     LoveDialogues.Add(npc, new List<Regex>());
+                    HateDialogues.Add(npc, new List<Regex>());
                     string allrelationships = String.Format("(?<character>({0}))", String.Join("|", Relationships[npc].Keys));
                     foreach (string quote in Dialogues[GiftTaste.eGiftTaste_Love])
                     {
                         LoveDialogues[npc].Add(new Regex(String.Format(quote, allrelationships, ItemRegex)));
+                    }
+
+                    foreach(string quote in Dialogues[GiftTaste.eGiftTaste_Hate])
+                    {
+                        HateDialogues[npc].Add(new Regex(String.Format(quote, allrelationships, ItemRegex)));
                     }
                 }
             }
@@ -158,6 +165,7 @@ namespace SDVGiftTracker
             {
                 DialogueBox dbox = (DialogueBox)e.NewMenu;
                 CheckDialogues(Game1.currentSpeaker.name, dbox.getCurrentString(), GiftTaste.eGiftTaste_Love);
+                CheckDialogues(Game1.currentSpeaker.name, dbox.getCurrentString(), GiftTaste.eGiftTaste_Hate);
             }
         }
 
