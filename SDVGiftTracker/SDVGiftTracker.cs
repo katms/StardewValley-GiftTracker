@@ -167,7 +167,7 @@ namespace SDVGiftTracker
             Match result = dialogues[npc].Select(r => r.Match(quote)).FirstOrDefault(m => Match.Empty != m);
             if(null != result)
             {
-                string character = result.Groups["character"].Value,
+                string character = Relationships[npc][result.Groups["character"].Value],
                        item = result.Groups["item"].Value;
 
                 // trying to get the actual Item instance from the name
