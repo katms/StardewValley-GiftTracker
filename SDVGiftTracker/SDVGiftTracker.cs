@@ -157,22 +157,23 @@ namespace SDVGiftTracker
                 && Relationships.ContainsKey(Game1.currentSpeaker.name))
             {
                 DialogueBox dbox = (DialogueBox)e.NewMenu;
-                string character, item;
+                CheckDialogues(Game1.currentSpeaker.name, dbox.getCurrentString(), GiftTaste.eGiftTaste_Love);
+            }
+        }
 
-                // if any match is found
-                var loveMatch = LoveDialogues[Game1.currentSpeaker.getName()].Select(r => r.Match(dbox.getCurrentString()))
-                    .FirstOrDefault(m => Match.Empty != m);
-                if (loveMatch != null)
-                {
-                    Log.Out(loveMatch.Groups["character"].Value + " " + loveMatch.Groups["item"].Value);
-                    character = Relationships[Game1.currentSpeaker.name][loveMatch.Groups["character"].Value];
-                    item = loveMatch.Groups["item"].Value;
+        private void CheckDialogues(string npc, string quote, GiftTaste gt)
+        {
+            Dictionary<string, List<Regex>> dialogues = (GiftTaste.eGiftTaste_Love == gt) ? LoveDialogues : HateDialogues;
+            Match result = dialogues[npc].Select(r => r.Match(quote)).FirstOrDefault(m => Match.Empty != m);
+            if(null != result)
+            {
+                string character = result.Groups["character"].Value,
+                       item = result.Groups["item"].Value;
 
-                    // trying to get the actual Item instance from the name
-                    // is probably more trouble than it's worth
-                    // considering they're already being stored as strings
-                    GiftManager.Add(character, item, GiftTaste.eGiftTaste_Love);
-                }
+                // trying to get the actual Item instance from the name
+                // is probably more trouble than it's worth
+                // considering they're already being stored as strings
+                GiftManager.Add(character, item, gt);
             }
         }
 
