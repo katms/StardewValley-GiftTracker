@@ -78,10 +78,22 @@ namespace SDVGiftTracker
                 // is among the speaker's possible reactions to a gift
                 // i.e. this isn't a delivery
                 if (dbox != null && recipient != null &&
-                    Game1.NPCGiftTastes[recipient.name].Contains(dbox.getCurrentString()))
+                    IsGiftDialogue(recipient, dbox.getCurrentString()))
                 {
                     GiftManager.Add(recipient.name, gift);
                 }
+            }
+        }
+
+        private static bool IsGiftDialogue(NPC recipient, string dialogue)
+        {
+            if(recipient.isBirthday(Game1.currentSeason, Game1.dayOfMonth))
+            {
+                return dialogue.Contains("birthday");
+            }
+            else
+            {
+                return Game1.NPCGiftTastes[recipient.name].Contains(dialogue);
             }
         }
 
